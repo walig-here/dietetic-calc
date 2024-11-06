@@ -16,6 +16,7 @@ export default function FormScreen() {
     weight: {value: "", isValid: false},
     height: {value: "", isValid: false},
     waist: {value: "", isValid: false},
+    hips: {value: "", isValid: false},
     activity: {value: "", isValid: false},
   });
   const [isFormValid, setIsFormValid] = useState(false);
@@ -23,11 +24,11 @@ export default function FormScreen() {
   const handleUserDataChange = (changedKey, value, isValid) => {
     setUserData(prevUserData => {
       return {
-      ...prevUserData,
-      [changedKey]: {
-        value: value,
-        isValid: isValid
-      }
+        ...prevUserData,
+        [changedKey]: {
+          value: value,
+          isValid: isValid
+        }
       }
     });
     setIsFormValid(
@@ -57,11 +58,15 @@ export default function FormScreen() {
           />
           <LabeledNumberInput 
             label={"Wzrost (cm)"}
-            setUserInput={(value, isValid) => handleUserDataChange("height", value, isValid)}
+            setUserInput={(value, isValid) => handleUserDataChange("height", value / 100, isValid)}
           />
           <LabeledNumberInput 
-            label={"Talia (cm)"}
-            setUserInput={(value, isValid) => handleUserDataChange("waist", value, isValid)}
+            label={"Obwód w tali (cm)"}
+            setUserInput={(value, isValid) => handleUserDataChange("waist", value / 100, isValid)}
+          />
+          <LabeledNumberInput 
+            label={"Obwód w biorach (cm)"}
+            setUserInput={(value, isValid) => handleUserDataChange("hips", value / 100, isValid)}
           />
           <LabeledSelectionMenu 
             label={"Aktywność fizyczna"}
@@ -73,7 +78,7 @@ export default function FormScreen() {
             title={"OBLICZ RAPORT"} 
             onClick={
               isFormValid ?
-              () => router.push({pathname: "/report", params: {userData: JSON.stringify(userData)}}) :
+              () => router.push({pathname: "/report", params: {serializedUserData: JSON.stringify(userData)}}) :
               () => ToastAndroid.show("Podane dane nie są poprawne!", ToastAndroid.SHORT)
             }
           />
@@ -88,7 +93,7 @@ export default function FormScreen() {
 const styles = StyleSheet.create({
   form: {
     rowGap: 20,
-    paddingHorizontal: 45,
+    paddingHorizontal: 40,
     paddingTop: 30,
     paddingBottom: 30,
     alignItems: 'center',
