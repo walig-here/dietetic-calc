@@ -9,9 +9,11 @@
 
     <string-array name="activity">
         <item>Brak</item>
-        <item>Ćwiczenia 1 raz w tygodniu</item>
-        <item>Ćwiczenia 2 razy w tygodniu</item>
-        <item>Ćwiczenia kilka razy w tygodniu</item>
+        <item>Mała</item>
+        <item>Umiarkowana</item>
+        <item>Reguralna</item>
+        <item>Codzienna</item>
+        <item>Zawodowa</item>
     </string-array>
     <string name="title_activity_results">ResultsActivity</string>
 </resources>

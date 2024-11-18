@@ -401,7 +401,7 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
         public Provider<String> getCoreKtx() { return getVersion("coreKtx"); }
 
         /**
-         * Version alias <b>databindingRuntime</b> with value <b>8.7.1</b>
+         * Version alias <b>databindingRuntime</b> with value <b>8.1.1</b>
          * <p>
          * If the version is a rich version and cannot be represented as a
          * single version string, an empty string is returned.

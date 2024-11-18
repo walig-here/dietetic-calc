@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mobilki_poczatek"
+    namespace = "com.example.myapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mobilki_poczatek"
+        applicationId = "com.example.myapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

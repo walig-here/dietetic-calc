@@ -10,18 +10,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mobilki_poczatek"
+        android:theme="@style/Theme.myapp"
         tools:targetApi="31">
         <activity
             android:name=".ResultsActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/title_activity_results"
-            android:theme="@style/Theme.Mobilki_poczatek" />
+            android:theme="@style/Theme.myapp" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Mobilki_poczatek">
+            android:theme="@style/Theme.myapp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
