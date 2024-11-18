@@ -117,6 +117,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         if (selectedGender?.isEmpty() == true) {
             genderFragment.binding.autoCompleteTextViewGenders.setBackgroundResource(R.drawable.custom_input_error)
+            isValid = false
         } else {
             genderFragment?.binding?.autoCompleteTextViewGenders?.setBackgroundResource(R.drawable.custom_input)
         }
