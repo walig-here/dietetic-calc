@@ -1,9 +1,8 @@
-import { Text, StyleSheet, View } from "react-native"
-import {Image} from "expo-image"
+import { Text, StyleSheet } from "react-native"
 import {Shadow} from 'react-native-shadow-2';
 
 
-export default function Navbar({title, loaded_icon}) {
+export default function Navbar({title}) {
     return (
         <Shadow 
             style={styles.navbar} 
@@ -12,7 +11,6 @@ export default function Navbar({title, loaded_icon}) {
             distance={6}
         >
             <Text style={styles.header}>{title}</Text>
-            <Image source={loaded_icon} style={styles.icon}/>
         </Shadow>
     )
 }
@@ -28,7 +26,7 @@ const styles = StyleSheet.create({
         columnGap: 100,
         height: 70,
         width: "100%",
-        alignItems: "center"
+        alignItems: "center",
     },
     header: {
         fontSize: 28,

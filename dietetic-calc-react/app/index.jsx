@@ -39,7 +39,7 @@ export default function FormScreen() {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Navbar title={"Uzupełnij dane"} loaded_icon={require("@/assets/images/form_icon.svg")}/>
+      <Navbar title={"Uzupełnij dane"}/>
       <ScrollView style={{flex: 10}}>
         <View style={styles.form}>
           <LabeledSelectionMenu
@@ -82,7 +82,6 @@ export default function FormScreen() {
               () => ToastAndroid.show("Podane dane nie są poprawne!", ToastAndroid.SHORT)
             }
           />
-          <Button title={"WRÓC"} onClick={() => 1}/>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -99,6 +98,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center', 
     flexGrow: 1,
-    width: "100%"
+    width: "100%",
   }
 })

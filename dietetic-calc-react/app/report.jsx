@@ -78,7 +78,7 @@ export default function ReportScreen() {
             10 * Number(userData.weight.value) +
             625 * Number(userData.height.value) +
             5 * Number(userData.age.value) +
-            (userData.height.gender == MALE ? 5 : -161)
+            (userData.gender.value == MALE ? 5 : -161)
         );
         switch (Number(userData.activity.value)) {
             case NO_ACTIVITY:
@@ -106,7 +106,7 @@ export default function ReportScreen() {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <Navbar title={"Twoje wyniki"} loaded_icon={require("@/assets/images/results-icon.svg")}/>
+            <Navbar title={"Twoje wyniki"}/>
             <ScrollView style={{flex: 10}}>
                 <View style={styles.results}>
                     <InterpretedMetricDisplay
