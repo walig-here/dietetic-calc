@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+
+class HeaderBar extends StatelessWidget {
+  final String title;
+
+  const HeaderBar({
+    required this.title
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 70,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0, -5),
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 7,
+            spreadRadius: 10
+          )
+        ]
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 4, top: 8, left: 15, right: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 28
+              ),
+            ),
+            SizedBox(width: 100),
+          ],
+        ),
+      ),
+    );
+  }
+}
