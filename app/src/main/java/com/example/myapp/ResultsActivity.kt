@@ -48,6 +48,9 @@ class ResultsActivity : ComponentActivity() {
         btn_back = findViewById(R.id.btn_back)
 
         btn_back.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
             finish()
         })
 

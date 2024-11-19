@@ -4,16 +4,16 @@
     android:id="@+id/toolBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="@color/gray">
-    
+    android:background="#f2f2f2"
+    android:padding="16dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textSize="24sp"
         android:text="Uzupełnij dane"
-        android:textStyle="bold"
-        android:textColor="@color/white" />
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </androidx.appcompat.widget.Toolbar>
