@@ -30,7 +30,7 @@ class _FormPageState extends State<FormPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Colors.white,
+          color: Color(0xfff2f2f2),
           child: Column(
             children: [
               HeaderBar(title: 'Uzupełnij dane'),

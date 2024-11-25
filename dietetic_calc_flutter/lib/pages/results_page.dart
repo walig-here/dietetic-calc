@@ -40,7 +40,7 @@ class _ResultsPageState extends State<ResultsPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Colors.white,
+          color: Color(0xfff2f2f2),
           child: Column(
             children: [
               HeaderBar(title: 'Twoje wyniki'),

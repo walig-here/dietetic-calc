@@ -13,7 +13,7 @@ class HeaderBar extends StatelessWidget {
     return Container(
       height: 70,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xfff2f2f2),
         boxShadow: [
           BoxShadow(
             offset: Offset(0, -5),
