@@ -17,9 +17,9 @@ class HeaderBar extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             offset: Offset(0, -5),
-            color: Colors.black.withOpacity(0.5),
-            blurRadius: 7,
-            spreadRadius: 10
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 4,
+            spreadRadius: 8
           )
         ]
       ),

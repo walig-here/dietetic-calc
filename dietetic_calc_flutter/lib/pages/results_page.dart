@@ -49,49 +49,48 @@ class _ResultsPageState extends State<ResultsPage> {
                   padding: const EdgeInsets.all(30),
                   child: ListView(
                     children: [
-                      SizedBox(height: 32),
-                      InterpretedCard(
-                        header: 'BMI',
-                        value: bmi.toStringAsFixed(2),
-                        interpretation: _interpretBmi(),
-                      ),
-                      SizedBox(height: 20),
-                      InterpretedCard(
-                        header: 'Wskaźnik talia-biodra',
-                        value: waistToHipsRatio.toStringAsFixed(2),
-                        interpretation: _interpretWaistToHips(appState.gender)
-                      ),
-                      SizedBox(height: 20),
-                      InterpretedCard(
-                        header: 'Wskaźnik talia-wzrost',
-                        value: waistToHeightRatio.toStringAsFixed(2),
-                        interpretation: _interpretWaistToHeight(),
-                      ),
-                      SizedBox(height: 20),
                       NotInterpretedCard(
                         header: 'Zapotrzebowanie kaloryczne',
                         unit: "kcal",
                         value: totalKcal.toStringAsFixed(2),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 16),
+                      InterpretedCard(
+                        header: 'BMI',
+                        value: bmi.toStringAsFixed(2),
+                        interpretation: _interpretBmi(),
+                      ),
+                      SizedBox(height: 16),
+                      InterpretedCard(
+                        header: 'Wskaźnik talia-biodra',
+                        value: waistToHipsRatio.toStringAsFixed(2),
+                        interpretation: _interpretWaistToHips(appState.gender)
+                      ),
+                      SizedBox(height: 16),
+                      InterpretedCard(
+                        header: 'Wskaźnik talia-wzrost',
+                        value: waistToHeightRatio.toStringAsFixed(2),
+                        interpretation: _interpretWaistToHeight(),
+                      ),
+                      SizedBox(height: 16),
                       NotInterpretedCard(
                         header: 'Zapotrzebowanie na węglowodany',
                         unit: "g",
                         value: carbsGrams.toStringAsFixed(2),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 16),
                       NotInterpretedCard(
                         header: 'Zapotrzebowanie na białko',
                         unit: "g",
                         value: proteinsGrams.toStringAsFixed(2),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 16),
                       NotInterpretedCard(
                         header: 'Zapotrzebowanie na tłuszcze',
                         unit: "g",
                         value: fatsGrams.toStringAsFixed(2),
                       ),
-                      SizedBox(height: 32),
+                      SizedBox(height: 16),
                       MyButton(
                         label: 'rozpocznij jeszcze raz',
                         handleOnPressed: (){
@@ -120,9 +119,9 @@ class _ResultsPageState extends State<ResultsPage> {
     const MAX_TEMPERATE_CENTRAL_ADIPOSITY = 0.6;
         
     if (waistToHeightRatio < MAX_HEALTHY){
-        return [Color(0xffcdeba7), "Brak otyłości brzusznej"];
+        return [Color(0xff4D741B), "Brak otyłości brzusznej"];
     }if (waistToHeightRatio < MAX_TEMPERATE_CENTRAL_ADIPOSITY){
-        return [Color(0xffffff99), "Umiarkowana otyłość brzuszna"];
+        return [Color(0xff666600), "Umiarkowana otyłość brzuszna"];
     }
     return [Color(0xff801818), "Zaawansowana otyłość brzuszna"];
   }
@@ -132,10 +131,10 @@ class _ResultsPageState extends State<ResultsPage> {
     var MAX_OVERWEIGHT = gender == "Mężczyzna" ? 1 : 0.85;
 
     if (waistToHipsRatio < MAX_NORMAL_WEIGHT){
-        return [Color(0xffcdeba7), "Optymalna masa ciała"];
+        return [Color(0xff4B701A), "Optymalna masa ciała"];
     }
     if (waistToHipsRatio < MAX_OVERWEIGHT){
-        return [Color(0xffffff99), "Nadwaga"];
+        return [Color(0xff6B6B00), "Nadwaga"];
     }
     return [Color(0xff801818), "Otyłość"];
   }
@@ -145,22 +144,22 @@ class _ResultsPageState extends State<ResultsPage> {
       return [Color(0xff082e79), "Wygłodzenie"];
     }
     if (bmi < 17){
-        return [Color(0xff4169e1), "Wychudzenie"];
+        return [Color(0xff305BDF), "Wychudzenie"];
     }
     if (bmi < 18.5){
-        return [Color(0xfface1af), "Niedowaga"];
+        return [Color(0xff2A792C), "Niedowaga"];
     }
     if (bmi < 25.5){
-        return [Color(0xffcdeba7), "Optymalna masa ciała"];
+        return [Color(0xff50781C), "Optymalna masa ciała"];
     }
     if (bmi < 30){
-        return [Color(0xffffff99), "Nadwaga"];
+        return [Color(0xff6B6B00), "Nadwaga"];
     }
     if (bmi < 35){
-        return [Color(0xfffde456), "Otyłość I stopnia"];
+        return [Color(0xff796702), "Otyłość I stopnia"];
     }
     if (bmi < 40){
-        return [Color(0xffcf2929), "Otyłość II stopnia"];
+        return [Color(0xffCF2929), "Otyłość II stopnia"];
     }
     return [Color(0xfffc801818), "Otyłość III stopnia"];
   }

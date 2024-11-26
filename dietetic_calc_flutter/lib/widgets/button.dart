@@ -23,16 +23,13 @@ class MyButton extends StatelessWidget {
           side: BorderSide(color: Color(0xff2c2c2c), width: 1),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Text(
-          label.toUpperCase(),
-          style: TextStyle(
-            fontSize: 14,
-            color: Color(0xfff5f5f5),
-            fontWeight: FontWeight.w500
-          )
-        ),
+      child: Text(
+        label.toUpperCase(),
+        style: TextStyle(
+          fontSize: 14,
+          color: Color(0xfff5f5f5),
+          fontWeight: FontWeight.w500
+        )
       )
     );
   }

@@ -36,10 +36,9 @@ class _FormPageState extends State<FormPage> {
               HeaderBar(title: 'Uzupełnij dane'),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(30.0),
+                  padding: const EdgeInsets.symmetric(horizontal:40, vertical:30),
                   child: ListView(
                     children: [
-                      SizedBox(height: 32),
                       LabeledSelectionMenu(
                         options: GENDERS,
                         label: "Płeć",
@@ -51,7 +50,7 @@ class _FormPageState extends State<FormPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       LabeledNumberInput(
                         labelText: 'Wiek (lata)',
                         handleOnChanged: (newAge, valid) {
@@ -61,7 +60,7 @@ class _FormPageState extends State<FormPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       LabeledNumberInput(
                         labelText: 'Waga (kg)', 
                         handleOnChanged: (newWeight, valid) {
@@ -71,7 +70,7 @@ class _FormPageState extends State<FormPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       LabeledNumberInput(
                         labelText: 'Wzrost (cm)', 
                         handleOnChanged: (newHeight, valid) {
@@ -81,7 +80,7 @@ class _FormPageState extends State<FormPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       LabeledNumberInput(
                         labelText: 'Obwód w tali (cm)', 
                         handleOnChanged: (newWaist, valid) {
@@ -91,7 +90,7 @@ class _FormPageState extends State<FormPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       LabeledNumberInput(
                         labelText: 'Obwód w biodrach (cm)', 
                         handleOnChanged: (newHips, valid) {
@@ -101,13 +100,13 @@ class _FormPageState extends State<FormPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       Container(
                         width: double.infinity,
                         child: LabeledSelectionMenu(
                           options: ACTIVITY, 
                           label: "Aktywność fizyczna", 
-                          placeholder: 'Wybierz aktywność',
+                          placeholder: 'Wybierz poziom aktywności',
                           handleOnSelected: (newActivity, valid) {
                             appState.setActivity(newActivity);
                             setState(() {
@@ -116,7 +115,7 @@ class _FormPageState extends State<FormPage> {
                           },
                         ),
                       ),
-                      SizedBox(height: 32),
+                      SizedBox(height: 20),
                       MyButton(
                         label: 'oblicz raport',
                         handleOnPressed: () {
@@ -130,7 +129,6 @@ class _FormPageState extends State<FormPage> {
                           }
                         }
                       ),
-                      SizedBox(height: 32),
                     ],
                   ),
                 ),
