@@ -28,17 +28,17 @@ export default function ReportScreen() {
         if (bmi < 16)
             return ["#082e79", "Wygłodzenie"];
         if (bmi < 17)
-            return ["#4169e1", "Wychudzenie"];
+            return ["#305BDF", "Wychudzenie"];
         if (bmi < 18.5)
-            return ["#ace1af", "Niedowaga"];
+            return ["#2A792C", "Niedowaga"];
         if (bmi < 25.5)
-            return ["#cdeba7", "Optymalna masa ciała"];
+            return ["#50781C", "Optymalna masa ciała"];
         if (bmi < 30)
-            return ["#ffff99", "Nadwaga"];
+            return ["#6B6B00", "Nadwaga"];
         if (bmi < 35)
-            return ["#fde456", "Otyłość I stopnia"];
+            return ["#796702", "Otyłość I stopnia"];
         if (bmi < 40)
-            return ["#cf2929", "Otyłość II stopnia"];
+            return ["#CF2929", "Otyłość II stopnia"];
         return ["#801818", "Otyłość III stopnia"];
     }
 
@@ -51,9 +51,9 @@ export default function ReportScreen() {
         const MAX_OVERWEIGHT = userData.height.gender == MALE ? 1 : 0.85;
 
         if (whr < MAX_NORMAL_WEIGHT)
-            return ["#cdeba7", "Optymalna masa ciała"];
+            return ["#4B701A", "Optymalna masa ciała"];
         if (whr < MAX_OVERWEIGHT)
-            return ["#ffff99", "Nadwaga"];
+            return ["#6B6B00", "Nadwaga"];
         return ["#801818", "Otyłość"];
     }
 
@@ -66,9 +66,9 @@ export default function ReportScreen() {
         const MAX_TEMPERATE_CENTRAL_ADIPOSITY = 0.6
         
         if (whtr < MAX_HEALTHY)
-            return ["#cdeba7", "Brak otyłości brzusznej"];
+            return ["#4D741B", "Brak otyłości brzusznej"];
         if (whtr < MAX_TEMPERATE_CENTRAL_ADIPOSITY)
-            return ["#ffff99", "Umiarkowana otyłość brzuszna"];
+            return ["#666600", "Umiarkowana otyłość brzuszna"];
         return ["#801818", "Zaawansowana otyłość brzuszna"];
     }
 
@@ -109,6 +109,11 @@ export default function ReportScreen() {
             <Navbar title={"Twoje wyniki"}/>
             <ScrollView style={{flex: 10}}>
                 <View style={styles.results}>
+                    <MetricDisplay
+                        header={"Zapotrzebowanie kaloryczne"}
+                        value={cpm}
+                        unit={"kcal"}
+                    />
                     <InterpretedMetricDisplay
                         header={"BMI"}
                         interpretationFunction={interpretBMI}
@@ -123,11 +128,6 @@ export default function ReportScreen() {
                         header={"Wskaźnik talia-wzrost"}
                         interpretationFunction={interpretWHTR}
                         value={calculateWHTR()}
-                    />
-                    <MetricDisplay
-                        header={"Zapotrzebowanie kaloryczne"}
-                        value={cpm}
-                        unit={"kcal"}
                     />
                     <MetricDisplay
                         header={"Zapotrzebowanie na węglowodany"}

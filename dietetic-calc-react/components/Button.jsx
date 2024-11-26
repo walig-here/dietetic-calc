@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         padding: 12,
-        width: 240
+        width: "100%"
     },
     pressedButton: {
         backgroundColor: "black"
