@@ -129,7 +129,7 @@ class ResultsActivity : ComponentActivity() {
     }
 
     private fun calculateWaistRatio(waist: Double, other: Double): Double{
-        return (waist / other.toDouble())
+        return (waist / other)
     }
 
 
@@ -154,12 +154,12 @@ class ResultsActivity : ComponentActivity() {
     fun updateBmiResults(bmi: Double, bmiTextView: TextView, descriptionTextView: TextView){
         val (bmiColor, bmiDescription) = when{
             bmi < 16.0 -> Pair(Color.parseColor("#082e79"), "Wygłodzenie")
-            bmi >= 16.0 && bmi < 17.0 -> Pair(Color.parseColor("#4169e1"), "Wychudzenie")
-            bmi >= 17.0 && bmi < 18.5 -> Pair(Color.parseColor("#ace1af"), "Niedowaga")
-            bmi >= 18.5 && bmi < 25.5 -> Pair(Color.parseColor("#cdeba7"), "Optymalna masa ciała")
-            bmi >= 25.5 && bmi < 30.0 -> Pair(Color.parseColor("#ffff99"), "Nadwaga")
-            bmi >= 30.0 && bmi < 35.0 -> Pair(Color.parseColor("#fde456"), "Otyłość I stopnia")
-            bmi >= 35.0 && bmi < 40.0 -> Pair(Color.parseColor("#cf2929"), "Otyłość II stopnia")
+            bmi >= 16.0 && bmi < 17.0 -> Pair(Color.parseColor("#305BDF"), "Wychudzenie")
+            bmi >= 17.0 && bmi < 18.5 -> Pair(Color.parseColor("#2A792C"), "Niedowaga")
+            bmi >= 18.5 && bmi < 25.5 -> Pair(Color.parseColor("#50781C"), "Optymalna masa ciała")
+            bmi >= 25.5 && bmi < 30.0 -> Pair(Color.parseColor("#6B6B00"), "Nadwaga")
+            bmi >= 30.0 && bmi < 35.0 -> Pair(Color.parseColor("#796702"), "Otyłość I stopnia")
+            bmi >= 35.0 && bmi < 40.0 -> Pair(Color.parseColor("#CF2929"), "Otyłość II stopnia")
             else -> Pair(Color.parseColor("#801818"), "Otyłość III stopnia")
         }
         bmiTextView.setTextColor(bmiColor)
@@ -178,8 +178,8 @@ class ResultsActivity : ComponentActivity() {
             MAX_OVERWEIGHT = 0.85
         }
         val (whrColor, whrDescription) = when{
-            whr < MAX_NORMAL_WEIGHT -> Pair(Color.parseColor("#cdeba7"), "Optymalna masa ciała")
-            whr >= MAX_NORMAL_WEIGHT && whr < MAX_OVERWEIGHT -> Pair(Color.parseColor("#ffff99"), "Nadwaga")
+            whr < MAX_NORMAL_WEIGHT -> Pair(Color.parseColor("#4B701A"), "Optymalna masa ciała")
+            whr >= MAX_NORMAL_WEIGHT && whr < MAX_OVERWEIGHT -> Pair(Color.parseColor("#6B6B00"), "Nadwaga")
             else -> Pair(Color.parseColor("#801818"), "Otyłość")
         }
         whrTextView.setTextColor(whrColor)
@@ -188,27 +188,11 @@ class ResultsActivity : ComponentActivity() {
 
     fun updateWthrResults(wthr: Double, wthrTextView: TextView, descriptionTextView: TextView){
         val (wthrColor, wthrDescription) = when{
-            wthr < 0.5 -> Pair(Color.parseColor("#cdeba7"), "Brak otyłości brzusznej")
-            wthr >= 0.5 && wthr < 0.6 -> Pair(Color.parseColor("#ffff99"), "Umiarkowana otyłość brzuszna")
+            wthr < 0.5 -> Pair(Color.parseColor("#4D741B"), "Brak otyłości brzusznej")
+            wthr >= 0.5 && wthr < 0.6 -> Pair(Color.parseColor("#666600"), "Umiarkowana otyłość brzuszna")
             else -> Pair(Color.parseColor("#801818"), "Zaawansowana otyłość brzuszna")
         }
         wthrTextView.setTextColor(wthrColor)
         descriptionTextView.text = wthrDescription
     }
-}
-
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    Myapp_Theme {
-        Greeting2("Android")
-  }
 }

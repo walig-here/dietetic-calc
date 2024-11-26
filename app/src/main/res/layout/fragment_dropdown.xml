@@ -8,7 +8,7 @@
         android:id="@+id/genders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="#f2f2f2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent">
@@ -18,15 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="none"
-            android:hint="Wybierz płeć"
-            android:padding="20dp"
-            android:textSize="18sp"
-            android:textColor="@color/black"
             android:background="@drawable/custom_input"
-            android:popupBackground="@color/white"
-            />
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:hint="Wybierz płeć"
+            android:inputType="none"
+            android:padding="12dp"
+            android:popupBackground="#f2f2f2"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-</layout>
+    </layout>

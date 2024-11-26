@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.myapp.databinding.ActivityMainBinding
-import com.example.myapp.databinding.FragmentDropdownBinding
 import com.example.myapp.databinding.DropdownActivityBinding
 
-class DropdownFragment_activity : Fragment(){
+class DropdownFragment_activity : Fragment() {
     private var _binding: DropdownActivityBinding? = null
     val binding get() = _binding!!
 
@@ -26,10 +23,12 @@ class DropdownFragment_activity : Fragment(){
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, activity)
         binding.autoCompleteTextViewActivity.setAdapter(arrayAdapter)
 
-        binding.autoCompleteTextViewActivity.setOnClickListener{
+        binding.autoCompleteTextViewActivity.setOnClickListener {
+            validateActivityField()
             binding.activity.hint = null
         }
 
+        validateActivityField()
         return binding.root
     }
 
@@ -38,8 +37,19 @@ class DropdownFragment_activity : Fragment(){
         _binding = null
     }
 
-    fun getSelectedActivity(): String{
+    fun getSelectedActivity(): String {
         return binding.autoCompleteTextViewActivity.text.toString()
     }
 
+    fun validateActivityField(): Boolean {
+        val isValid = binding.autoCompleteTextViewActivity.text.isNotEmpty()
+
+        if (isValid) {
+            binding.autoCompleteTextViewActivity.setBackgroundResource(R.drawable.custom_input)
+        } else {
+            binding.autoCompleteTextViewActivity.setBackgroundResource(R.drawable.custom_input_error)
+        }
+
+        return isValid
+    }
 }

@@ -27,15 +27,28 @@ class DropdownFragment : Fragment(){
 
         binding.autoCompleteTextViewGenders.setOnClickListener{
             binding.genders.hint = null
+            validateActivityField()
         }
 
-
+        validateActivityField()
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun validateActivityField(): Boolean {
+        val isValid = binding.autoCompleteTextViewGenders.text.isNotEmpty()
+
+        if (isValid) {
+            binding.autoCompleteTextViewGenders.setBackgroundResource(R.drawable.custom_input)
+        } else {
+            binding.autoCompleteTextViewGenders.setBackgroundResource(R.drawable.custom_input_error)
+        }
+
+        return isValid
     }
 
     fun getSelectedGender(): String{

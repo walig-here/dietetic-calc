@@ -2,29 +2,21 @@ package com.example.myapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.myapp.ui.theme.Myapp_Theme
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentContainer
-
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var btn_calc : Button
-    lateinit var et_age : EditText
-    lateinit var et_weight : EditText
-    lateinit var  et_height :EditText
-    lateinit var et_waist :EditText
-    lateinit var et_hips :EditText
-
+    lateinit var btn_calc: Button
+    lateinit var et_age: EditText
+    lateinit var et_weight: EditText
+    lateinit var et_height: EditText
+    lateinit var et_waist: EditText
+    lateinit var et_hips: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,32 +31,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         btn_calc.setOnClickListener(this)
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_genders, DropdownFragment())
                 .commit()
         }
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_activity, DropdownFragment_activity())
                 .commit()
         }
 
+        setupDynamicValidation()
     }
 
     override fun onClick(v: View?) {
-        if(!validateInput()){
+        if (!validateInput()) {
             return
         }
 
-        val genderFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_genders) as? DropdownFragment
-        val activityFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_activity) as? DropdownFragment_activity
+        val genderFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container_genders) as? DropdownFragment
+        val activityFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container_activity) as? DropdownFragment_activity
 
         val selectedGender = genderFragment?.getSelectedGender()
         val selectedActivity = activityFragment?.getSelectedActivity()
-
-
 
         val intent = Intent(this, ResultsActivity::class.java)
         intent.putExtra("age", et_age.text.toString().toInt())
@@ -77,74 +70,55 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
     }
 
-    private fun validateInput(): Boolean{
-        var isValid = true
+    private fun setupDynamicValidation() {
+        val numberFields = listOf(et_age, et_weight, et_height, et_waist, et_hips)
 
-        et_age.setBackgroundResource(R.drawable.custom_input)
-        et_weight.setBackgroundResource(R.drawable.custom_input)
-        et_height.setBackgroundResource(R.drawable.custom_input)
-        et_hips.setBackgroundResource(R.drawable.custom_input)
-        et_waist.setBackgroundResource(R.drawable.custom_input)
-        val genderFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_genders) as? DropdownFragment
-        val activityFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_activity) as? DropdownFragment_activity
-        val selectedGender = genderFragment?.getSelectedGender()
-        val selectedActivity = activityFragment?.getSelectedActivity()
-
-        if(et_age.text.isEmpty() or (et_age.text.toString().toIntOrNull() == null)){
-            et_age.setBackgroundResource(R.drawable.custom_input_error)
-            isValid = false
+        numberFields.forEach { numberField ->
+            numberField.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                override fun afterTextChanged(s: Editable?) {
+                    validateNumberField(numberField)
+                }
+            })
+            numberField.setOnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus) {
+                    validateNumberField(numberField)
+                }
             }
-
-        if(et_weight.text.isEmpty() or (et_weight.text.toString().toIntOrNull() == null)){
-            et_weight.setBackgroundResource(R.drawable.custom_input_error)
-            isValid = false
+            validateNumberField(numberField)
         }
+    }
 
-        if(et_height.text.isEmpty() or (et_height.text.toString().toIntOrNull() == null)){
-            et_height.setBackgroundResource(R.drawable.custom_input_error)
-            isValid = false
-        }
-
-        if(et_hips.text.isEmpty() or (et_hips.text.toString().toIntOrNull() == null)){
-            et_hips.setBackgroundResource(R.drawable.custom_input_error)
-            isValid = false
-        }
-
-        if(et_waist.text.isEmpty() or (et_waist.text.toString().toIntOrNull() == null)){
-            et_waist.setBackgroundResource(R.drawable.custom_input_error)
-            isValid = false
-        }
-
-        if (selectedGender?.isEmpty() == true) {
-            genderFragment.binding.autoCompleteTextViewGenders.setBackgroundResource(R.drawable.custom_input_error)
-            isValid = false
+    private fun validateNumberField(numberField: EditText): Boolean {
+        return if (numberField.text.isEmpty() || numberField.text.toString().toIntOrNull() == null) {
+            numberField.setBackgroundResource(R.drawable.custom_input_error)
+            false
         } else {
-            genderFragment?.binding?.autoCompleteTextViewGenders?.setBackgroundResource(R.drawable.custom_input)
+            numberField.setBackgroundResource(R.drawable.custom_input)
+            true
         }
+    }
 
-        if (selectedActivity?.isEmpty() == true) {
-            activityFragment.binding.autoCompleteTextViewActivity.setBackgroundResource(R.drawable.custom_input_error)
-            isValid = false
-        } else {
-            activityFragment?.binding?.autoCompleteTextViewActivity?.setBackgroundResource(R.drawable.custom_input)
-        }
+    private fun validateInput(): Boolean {
+        var isValid = true
+        val activityFragment = supportFragmentManager.findFragmentById(
+            R.id.fragment_container_activity
+        ) as? DropdownFragment_activity
+        val isActivityValid = activityFragment?.validateActivityField() ?: false
+        val genderFragment = supportFragmentManager.findFragmentById(
+            R.id.fragment_container_genders
+        ) as? DropdownFragment
+        val isGenderValid = genderFragment?.validateActivityField() ?: false
+
+        isValid = isGenderValid && isValid
+        isValid = isActivityValid && isValid
+        isValid = validateNumberField(et_age) && isValid
+        isValid = validateNumberField(et_weight) && isValid
+        isValid = validateNumberField(et_height) && isValid
+        isValid = validateNumberField(et_waist) && isValid
+        isValid = validateNumberField(et_hips) && isValid
 
         return isValid
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Myapp_Theme{
-        Greeting("Android")
     }
 }
